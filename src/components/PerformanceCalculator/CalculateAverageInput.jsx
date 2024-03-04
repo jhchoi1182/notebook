@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 
 export default function CalculateAverageInput() {
   const [input, setInput] = useState("");
   const [average, setAverage] = useState(0);
+
+  const numbersCount = input.split(", ").filter((n) => !isNaN(Number(n)) && n !== "").length;
 
   const handleCalculate = () => {
     const numbers = input
@@ -32,6 +34,7 @@ export default function CalculateAverageInput() {
       <input style={{ width: "400px" }} type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="숫자들을 입력하세요 (예: 23.34, 21.5, ...)" />
       <button onClick={handleCalculate}>평균 계산</button>
       {average !== null && <p>계산된 평균: {average.toFixed(2)}</p>}
+      <p>입력된 숫자 개수: {numbersCount}</p>
     </div>
   );
 }
